@@ -27,7 +27,7 @@ import resnet_main
 import resnet_model
 import vgg_preprocessing
 
-_VALID_SIZES = [18, 34, 50, 101, 152, 200]
+VALID_SIZES = [18, 34, 50, 101, 152, 200]
 _DEFAULT_IMAGE_SIZE = 224
 _NUM_CHANNELS = 3
 _LABEL_CLASSES = 1001
@@ -215,7 +215,7 @@ def main(unused_argv):
 
 if __name__ == '__main__':
 
-  parser = resnet_main.ResnetArgParser(resnet_size_choices=_VALID_SIZES)
+  parser = resnet_main.ResnetArgParser(resnet_size_choices=VALID_SIZES)
 
   tf.logging.set_verbosity(tf.logging.INFO)
   FLAGS, unparsed = parser.parse_known_args()
