@@ -21,25 +21,24 @@ from __future__ import division
 from __future__ import print_function
 
 import imagenet_main
-import multi_gpu.resnet_multi_gpu as multi_gpu
+import multi_gpu.resnet_multi_gpu as resnet_multi
 
 
 def model_fn_with_optimizer_fn(features, labels, mode, params):
   """Wrapper for the model_fn that sets the optimizer as the AdamOptimizer.
   """
   return imagenet_main.resnet_model_fn(
-    features, labels, mode, params, multi_gpu.get_optimizer)
+    features, labels, mode, params, resnet_multi.get_optimizer)
 
 
 def main(unused_argv):
-  multi_gpu.main_with_model_fn(
+  resnet_multi.main_with_model_fn(
       FLAGS, unused_argv, model_fn_with_optimizer_fn, imagenet_main.input_fn)
 
 
 if __name__ == '__main__':
-  parser = multi_gpu.ResnetMultiParser(
+  parser = resnet_multi.ResnetMultiParser(
     resnet_size_choices=imagenet_main.VALID_SIZES)
-
 
   tf.logging.set_verbosity(tf.logging.INFO)
   FLAGS, unparsed = parser.parse_known_args()
