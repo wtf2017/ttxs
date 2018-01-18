@@ -24,6 +24,7 @@ import sys
 
 import imagenet_main
 import multi_gpu.resnet_multi_gpu as resnet_multi
+import tensorflow as tf
 
 
 def model_fn_with_optimizer_fn(features, labels, mode, params):
